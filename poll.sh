@@ -5,8 +5,8 @@ do
 	climate=`python fetch.py`
 	if [ $? -eq 0 ]
 	then
-		temp=`echo $climate | jq '.temperature.value'`
-                humidity=`echo $climate | jq '.humidity.value'`
+		temp=`echo $climate | jq -r '.temperature.value'`
+                humidity=`echo $climate | jq -r '.humidity.value'`
 		echo "T: $temp"
 		echo "H: $humidity"
 		mosquitto_pub -h $MQTT_HOST -t $MQTT_TOPIC_PREFIX/temperature -m $temp
