@@ -1,0 +1,13 @@
+version: "2.2"
+services:
+  dht22:
+    build: .
+    restart: always
+    # GPIO access
+    privileged: true
+    volumes:
+      - .:/opt/dht22
+    environment:
+      MQTT_HOST: 192.168.1.175
+      MQTT_TOPIC_PREFIX: "sensors/bedroom"
+    
